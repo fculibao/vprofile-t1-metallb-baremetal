@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app01
+  labels:
+    app: app01
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app01
+  template:
+    metadata:
+      labels:
+        app: app01
+    spec:
+      containers:
+      - name: app01
+        image: fculibao/tomcat-arm64v8-jre11:latest
+        ports:
+        - name: app01-port
+          containerPort: 8080

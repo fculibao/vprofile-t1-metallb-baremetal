@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db01
+  labels:
+    app: db01
+spec:
+  selector:
+    matchLabels:
+      app: db01
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: db01
+    spec:
+      containers:
+        - name: db01
+          image: fculibao/mysqldb-arm64v8:latest
+          ports:
+            - name: db01-port
+              containerPort: 3306
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: app-secret
+                  key: db-pass
+      
+          
