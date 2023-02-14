@@ -1,0 +1,16 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: app01
+  namespace: default
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`app01.iom.com`)
+      kind: Rule
+      services:
+        - name: web-deploy-app01
+          port: 80
+
